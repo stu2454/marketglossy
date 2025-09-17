@@ -164,22 +164,6 @@ def create_trend_chart(data, title):
 
 # Main app
 def main():
-    # Header with dynamic segment title
-    st.markdown(f"""
-    <div style='background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); 
-                padding: 2rem; margin: -1rem -1rem 2rem -1rem; color: white;'>
-        <div style='display: flex; justify-content: space-between; align-items: center;'>
-            <div>
-                <h1 style='margin: 0; font-size: 2.5rem;'>{selected_segment} Market Overview</h1>
-                <p style='margin: 0.5rem 0 0 0; opacity: 0.9;'>Q2 2025 • {segment_subcategories.get(selected_segment, "Assistive Technology Segment")}</p>
-            </div>
-            <div style='background: #9b59b6; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold;'>
-                NDIS
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
     # Load data
     df = generate_sample_data()
     
@@ -210,6 +194,22 @@ def main():
         "Smart Home Tech": "IoT Devices, Home Automation, Environmental Controls, Safety Systems",
         "Therapy Equipment": "Exercise Equipment, Positioning Aids, Sensory Tools, Mobility Training"
     }
+    
+    # Header with dynamic segment title
+    st.markdown(f"""
+    <div style='background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); 
+                padding: 2rem; margin: -1rem -1rem 2rem -1rem; color: white;'>
+        <div style='display: flex; justify-content: space-between; align-items: center;'>
+            <div>
+                <h1 style='margin: 0; font-size: 2.5rem;'>{selected_segment} Market Overview</h1>
+                <p style='margin: 0.5rem 0 0 0; opacity: 0.9;'>Q2 2025 • {segment_subcategories.get(selected_segment, "Assistive Technology Segment")}</p>
+            </div>
+            <div style='background: #9b59b6; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold;'>
+                NDIS
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Add export options
     st.sidebar.markdown("---")
