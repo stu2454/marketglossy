@@ -164,14 +164,14 @@ def create_trend_chart(data, title):
 
 # Main app
 def main():
-    # Header
-    st.markdown("""
+    # Header with dynamic segment title
+    st.markdown(f"""
     <div style='background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); 
                 padding: 2rem; margin: -1rem -1rem 2rem -1rem; color: white;'>
         <div style='display: flex; justify-content: space-between; align-items: center;'>
             <div>
-                <h1 style='margin: 0; font-size: 2.5rem;'>AT Market Intelligence Dashboard</h1>
-                <p style='margin: 0.5rem 0 0 0; opacity: 0.9;'>Q2 2025 • Comprehensive Market Overview</p>
+                <h1 style='margin: 0; font-size: 2.5rem;'>{selected_segment} Market Overview</h1>
+                <p style='margin: 0.5rem 0 0 0; opacity: 0.9;'>Q2 2025 • {segment_subcategories.get(selected_segment, "Assistive Technology Segment")}</p>
             </div>
             <div style='background: #9b59b6; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold;'>
                 NDIS
@@ -193,6 +193,23 @@ def main():
     
     # Filter data for selected segment
     segment_data = df[df['segment'] == selected_segment].iloc[0]
+    
+    # Get segment-specific subcategories for display
+    segment_subcategories = {
+        "Mobility Aids": "Wheelchairs, Scooters, Walking Aids, Standing Frames",
+        "Communication Devices": "Speech Devices, Tablets, Communication Apps, Voice Output",
+        "Vision Equipment": "Magnifiers, Screen Readers, Navigation Aids, Smart Glasses",
+        "Hearing Equipment": "Hearing Aids, FM Systems, Assistive Listening, Cochlear Implants",
+        "Personal Care": "Bathroom Aids, Dressing Aids, Eating Utensils, Hygiene Products",
+        "Home Modifications": "Ramps, Rails, Accessible Fixtures, Door Modifications",
+        "Vehicle Modifications": "Hand Controls, Wheelchair Lifts, Pedal Extensions, Steering Aids",
+        "Prosthetics": "Upper Limb, Lower Limb, Myoelectric, Cosmetic Prosthetics",
+        "Orthotics": "Braces, Supports, Therapeutic Footwear, Spinal Orthoses",
+        "Workplace Equipment": "Ergonomic Aids, Computer Access, Desk Modifications, Seating",
+        "Recreation Equipment": "Sports Wheelchairs, Adaptive Sports, Exercise Equipment, Games",
+        "Smart Home Tech": "IoT Devices, Home Automation, Environmental Controls, Safety Systems",
+        "Therapy Equipment": "Exercise Equipment, Positioning Aids, Sensory Tools, Mobility Training"
+    }
     
     # Add export options
     st.sidebar.markdown("---")
